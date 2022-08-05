@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Admin\AdminController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [AdminController::class, 'index'])->name('admin');
+
+Route::get('register', [AdminController::class, 'register'])->name('register');
+
+Route::post('signup', [AdminController::class, 'signup'])->name('signup');
+
+Route::get('dashboard', [AdminController::class, 'dashboard']);
+
+Route::post('admin_login', [AdminController::class, 'admin_login'])->name('admin_login');
+
+Route::get('logout', [AdminController::class, 'logout'])->name('logout');
